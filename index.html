@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/0.9.1/aframe.min.js"></script>
+  <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+  <script src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script>
+  <script type="text/javascript">
+      AFRAME.registerComponent('my-animation', {
+        schema: {
+          speedX: { type: 'float', default: 0 },
+          totalSizeX: { type: 'float' }
+        },
+        tick: function ( time, timeDelta ) {
+          let position = this.el.object3D.position;
+          position.setY( position.y + ( this.data.speedX ) );
+
+          if( position.y >= ( this.data.totalSizeX ) ) {
+            position.setY( 0 );
+          }
+        }
+      });
+    </script>
+  </head>
+  <body>
+
+    <a-scene shadows antialias="true">
+
+      <a-assets>
+        <!-- total objects -->
+        <a-asset-item id="dolphin" src="/models/dolphin.obj"></a-asset-item>
+        <a-asset-item id="column" src="/models/OldColumn.obj"></a-asset-item>
+        <a-asset-item id="can" src="/models/Can/cola_can.obj"></a-asset-item>
+        <!-- textures -->
+        <img id="sky" src="/images/panorama.jpg">
+        <img id="ground" src="/images/floor.png">
+
+      </a-assets>
+
+      <a-sky src="#sky"></a-sky>
+
+      
+    <a-entity class="floor">
+      <a-plane material="src:url(/images/floor.png);" position="0 0 0" height="50" width="50" rotation="-90 0 0"  shadow="cast: true; receive: true"></a-plane>
+      <a-plane material="src:url(/images/floor.png);" position="50 0 0" height="50" width="50" rotation="-90 0 0"  shadow="cast: true; receive: true"></a-plane>
+      <a-plane material="src:url(/images/floor.png);" position="-50 0 0" height="50" width="50" rotation="-90 0 0"  shadow="cast: true; receive: true"></a-plane>
+      <a-plane material="src:url(/images/floor.png);" position="100 0 0" height="50" width="50" rotation="-90 0 0"  shadow="cast: true; receive: true"></a-plane>
+      <a-plane material="src:url(/images/floor.png);" position="-100 0 0" height="50" width="50" rotation="-90 0 0"  shadow="cast: true; receive: true"></a-plane>
+      
+      <a-plane material="src:url(/images/floor.png);" position="0 0 -50" height="50" width="50" rotation="-90 0 0"  shadow="cast: true; receive: true"></a-plane>
+      <a-plane material="src:url(/images/floor.png);" position="50 0 -50" height="50" width="50" rotation="-90 0 0"  shadow="cast: true; receive: true"></a-plane>
+      <a-plane material="src:url(/images/floor.png);" position="-50 0 -50" height="50" width="50" rotation="-90 0 0"  shadow="cast: true; receive: true"></a-plane>
+      <a-plane material="src:url(/images/floor.png);" position="100 0 -50" height="50" width="50" rotation="-90 0 0"  shadow="cast: true; receive: true"></a-plane>
+      <a-plane material="src:url(/images/floor.png);" position="-100 0 -50" height="50" width="50" rotation="-90 0 0"  shadow="cast: true; receive: true"></a-plane>
+      
+      <a-plane material="src:url(/images/floor.png);" position="0 0 -100" height="50" width="50" rotation="-90 0 0"  shadow="cast: true; receive: true"></a-plane>
+      <a-plane material="src:url(/images/floor.png);" position="50 0 -100" height="50" width="50" rotation="-90 0 0"  shadow="cast: true; receive: true"></a-plane>
+      <a-plane material="src:url(/images/floor.png);" position="-50 0 -100" height="50" width="50" rotation="-90 0 0"  shadow="cast: true; receive: true"></a-plane>
+      <a-plane material="src:url(/images/floor.png);" position="100 0 -100" height="50" width="50" rotation="-90 0 0"  shadow="cast: true; receive: true"></a-plane>
+      <a-plane material="src:url(/images/floor.png);" position="-100 0 -100" height="50" width="50" rotation="-90 0 0"  shadow="cast: true; receive: true"></a-plane>
+
+      <a-plane material="src:url(/images/floor.png);" position="0 0 -150" height="50" width="50" rotation="-90 0 0"  shadow="cast: true; receive: true"></a-plane>
+      <a-plane material="src:url(/images/floor.png);" position="50 0 -150" height="50" width="50" rotation="-90 0 0"  shadow="cast: true; receive: true"></a-plane>
+      <a-plane material="src:url(/images/floor.png);" position="-50 0 -150" height="50" width="50" rotation="-90 0 0"  shadow="cast: true; receive: true"></a-plane>
+      <a-plane material="src:url(/images/floor.png);" position="100 0 -150" height="50" width="50" rotation="-90 0 0"  shadow="cast: true; receive: true"></a-plane>
+      <a-plane material="src:url(/images/floor.png);" position="-100 0 -150" height="50" width="50" rotation="-90 0 0"  shadow="cast: true; receive: true"></a-plane>
+
+    </a-entity>
+
+    <a-entity position="0 0 -30" >
+      <a-entity position="-10 5 0" height="30" rotation="10 190 -20" obj-model="obj: #dolphin;" material="shader:gif;src:url(/images/gif/tenor.gif);" shadow="cast: true;"
+      ></a-entity>
+      <a-entity position="10 5 0" height="30" rotation="-10 190 20" obj-model="obj: #dolphin;" material="src:/images/globe.png;" shadow="cast: true;"></a-entity>
+      <a-entity position="0 5 0" height="10" rotation="5 190 0" obj-model="obj: #dolphin;" material="shader:gif;src:url(/images/gif/watersparkle.gif);" shadow="cast: true;"></a-entity>
+    </a-entity>
+    <a-entity position="0 0 -50" >
+      <a-entity position="-10 8 0" height="30" rotation="10 190 -20" obj-model="obj: #dolphin;" material="shader:gif;src:url(/images/gif/bubble.gif);" shadow="cast: true;"></a-entity>
+      <a-entity position="10 15 0" height="30" rotation="-10 190 20" obj-model="obj: #dolphin;" material="shader:gif;src:url(/images/gif/lines.gif);" shadow="cast: true;"></a-entity>
+      <a-entity position="0 3 3" height="10" rotation="5 190 3" obj-model="obj: #dolphin;" material="shader:gif;src:url(/images/gif/fur.gif);" shadow="cast: true;"></a-entity>
+    </a-entity>
+    <a-entity position="0 0 -40" >
+      <a-entity position="-12 3.5 5" height="30" rotation="13 190 -50" obj-model="obj: #dolphin;" material="shader:gif;src:url(/images/gif/blob.gif);" shadow="cast: true;"></a-entity>
+      <a-entity position="10 1 0" height="30" rotation="-2 190 20" obj-model="obj: #dolphin;" material="shader:gif;src:url(/images/gif/wut.gif);" shadow="cast: true;"></a-entity>
+      <a-entity position="0 12 0" height="10" rotation="6 190 8" obj-model="obj: #dolphin;" material="src: /images/transgrid.png;transparent: true" shadow="cast: true;"></a-entity>
+    </a-entity>
+    <a-entity position="0 0 -20" >
+      <a-entity position="1 1 0" height="30" rotation="-2 190 20" obj-model="obj: #dolphin;" material="shader:gif;src:url(/images/gif/glitch.gif);" shadow="cast: true;"></a-entity>
+      <a-entity position="0 12 5" height="10" rotation="6 190 8" obj-model="obj: #dolphin;" material="shader:gif;src:url(/images/gif/wrap.gif);" shadow="cast: true;"></a-entity>
+    </a-entity>
+    <a-entity position="0 0 -70" >
+      <a-entity position="1 1 0" height="30" rotation="-2 190 20" obj-model="obj: #dolphin;" material="shader:gif;src:url(/images/gif/jazz.gif);transparent: true" shadow="cast: true;"></a-entity>
+      <a-entity position="0 12 5" height="10" rotation="6 190 8" obj-model="obj: #dolphin;" material="shader:gif;src:url(/images/gif/nerd.gif);transparent: true" shadow="cast: true;"></a-entity>
+    </a-entity>
+
+
+    <a-entity class="columns">
+      <a-entity position="-70 0 -100"  rotation="0 -95 0" obj-model="obj: #column;" shadow="cast: true;" material="src: /models/OldColumn01_part_01.jpg"></a-entity>
+      <a-entity position="70 0 -100"  rotation="0 -95 0" obj-model="obj: #column;" shadow="cast: true;" material="src: /models/OldColumn01_part_01.jpg"></a-entity>
+    </a-entity>
+
+    
+
+
+      <a-entity light="type: point; castShadow: true; color: rgba(255,0,0,0.5);" position="-70 150 -50" ></a-entity>
+      <a-entity light=" type: point; castShadow: true; color: rgba(0,0,255,0.5);"  position="70 150 -50"></a-entity>
+      <a-entity light="type: ambient; color: rgba(255,255,255,0.1)" ></a-entity>
+      
+
+      <a-entity camera look-controls wasd-controls="acceleration: 500" position="0 5 5">
+        <!-- <a-entity light="type:point; castShadow: true; color:#fff;" position="0 0 0"></a-entity> -->
+      </a-entity>
+
+    </a-scene>
+<script type="text/javascript">
+      let scene = document.querySelector( 'a-scene' );
+      let objectCount = 10;
+      let canScale = 0.3;
+      let size = 5;
+      let totalSize = objectCount * size;
+      let speedX = 0.1;
+
+      let containerElement = document.createElement( 'a-entity' );
+      containerElement.setAttribute( 'position', `${-1.0 * totalSize / 2.0} ${ totalSize} -150.0` );
+      containerElement.setAttribute( 'rotation', `90 0 0` );
+      scene.appendChild( containerElement );
+
+      function createCan(x, y, z, delay) {
+        let element = document.createElement( 'a-entity' );
+        element.setAttribute( 'material', 'src: /models/Can/Cola_Can_albedo.png; metalness:.3' );
+        element.setAttribute( 'class' , `can` );
+        element.setAttribute( 'position' , `${x} ${y} ${z}` );
+        element.setAttribute( 'shadow' , 'cast: true;' );
+        element.setAttribute( 'obj-model' , 'obj: #can;' );
+        element.setAttribute( 'scale' , `${canScale} ${canScale} ${canScale}` );
+        element.setAttribute( 'animation' , `property: rotation; to: 0 360 360; loop: true; dur: 10000; easing: linear; delay: ${delay}` );
+
+        element.setAttribute( 'my-animation', `totalSizeX: 150; speedX: ${speedX}` );
+        // element.setAttribute( 'animation__2' , 'property: position; loop: true; dur: 10000; easing: linear' );
+        containerElement.appendChild( element );
+      }
+
+      function addObjects() {
+        for( let i=0; i<objectCount; i++ ) {
+          for( let j=0; j<objectCount; j++ ) {
+            createCan( i * size , Math.random() * 150 , j * size, Math.random() * 10000 );
+          }
+        }
+      }
+
+addObjects();
+    </script>
+
+  </body>
+</html>
